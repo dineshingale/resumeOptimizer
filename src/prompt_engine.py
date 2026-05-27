@@ -1,4 +1,4 @@
-def generate_optimization_prompt(resume_text, jd_text):
+def optimizationPrompt(resume_text, jd_text):
     """
     Constructs the prompt to be sent to Gemini.
     """

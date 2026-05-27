@@ -1,3 +1,5 @@
+# for choosing right model name, run this script in root termial
+
 import google.generativeai as genai
 import os
 from dotenv import load_dotenv

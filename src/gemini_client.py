@@ -2,14 +2,12 @@ import google.generativeai as genai
 import json
 import os
 
-def get_optimized_keywords(prompt, api_key):
-    """
-    Sends the prompt to Gemini and parses the resulting JSON.
-    """
-    # Initialize the Gemini API
+def optimizedKeywords(prompt, api_key):
+    # send the prompt to Gemini and parses the resulting JSON.
+    # initialize the Gemini API
     genai.configure(api_key=api_key)
     
-    # We use gemini-1.5-flash for speed/cost or gemini-1.5-pro for higher reasoning
+    # change the model based on reasoning needed
     model = genai.GenerativeModel(
         model_name="models/gemini-2.5-flash",
         generation_config={"response_mime_type": "application/json"}
@@ -18,7 +16,7 @@ def get_optimized_keywords(prompt, api_key):
     try:
         response = model.generate_content(prompt)
         
-        # Parse the string response into a Python dictionary
+        # parse the string response into a Python dictionary
         optimization_map = json.loads(response.text)
         return optimization_map
         

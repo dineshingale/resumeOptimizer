@@ -16,7 +16,7 @@ async def optimize_resume(
     resume: UploadFile = File(...), 
     jd_text: str = Form(...)
 ):
-    # 1. Create a unique session ID and temporary directory
+    # create a unique session ID and temporary directory
     session_id = str(uuid.uuid4())
     temp_dir = f"temp/{session_id}"
     os.makedirs(temp_dir, exist_ok=True)
@@ -25,11 +25,11 @@ async def optimize_resume(
     output_path = f"{temp_dir}/optimized.docx"
 
     try:
-        # 2. Save uploaded file
+        # save uploaded file
         with open(input_path, "wb") as buffer:
             shutil.copyfileobj(resume.file, buffer)
 
-        # 3. Run your optimization pipeline
+        # run your optimization pipeline
         resume_text = extract_text_from_docx(input_path)
         prompt = generate_optimization_prompt(resume_text, jd_text)
         replacement_map = get_optimized_keywords(prompt, GEMINI_API_KEY)
@@ -39,7 +39,7 @@ async def optimize_resume(
 
         replace_keywords_in_docx(input_path, output_path, replacement_map)
 
-        # 4. Return the optimized file
+        # return the optimized file
         return FileResponse(
             path=output_path, 
             filename=f"optimized_{resume.filename}",
