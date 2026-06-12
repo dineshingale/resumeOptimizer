@@ -4,10 +4,10 @@ import shutil
 import os
 import uuid
 from config import GEMINI_API_KEY
-from src.extractor import extract_text_from_docx
-from src.prompt_engine import generate_optimization_prompt
-from src.gemini_client import get_optimized_keywords
-from src.replacer import replace_keywords_in_docx
+from src.extractor import textExtractor
+from src.prompt_engine import optimizationPrompt
+from src.gemini_client import optimizedKeywords
+from src.replacer import wordReplacer
 
 app = FastAPI()
 
@@ -30,14 +30,14 @@ async def optimize_resume(
             shutil.copyfileobj(resume.file, buffer)
 
         # run your optimization pipeline
-        resume_text = extract_text_from_docx(input_path)
-        prompt = generate_optimization_prompt(resume_text, jd_text)
-        replacement_map = get_optimized_keywords(prompt, GEMINI_API_KEY)
+        resume_text = textExtractor(input_path)
+        prompt = optimizationPrompt(resume_text, jd_text)
+        replacement_map = optimizedKeywords(prompt, GEMINI_API_KEY)
 
         if not replacement_map:
             raise HTTPException(status_code=500, detail="Gemini failed to generate keywords")
 
-        replace_keywords_in_docx(input_path, output_path, replacement_map)
+        wordReplacer(input_path, output_path, replacement_map)
 
         # return the optimized file
         return FileResponse(

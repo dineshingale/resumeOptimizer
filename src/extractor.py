@@ -28,7 +28,7 @@ def textExtractor(file_path):
 if __name__ == "__main__":
     # quick test logic
     resume_path = "data/input_resume.docx"
-    content = extract_text_from_docx(resume_path)
+    content = textExtractor(resume_path)
     if content:
         print("Successfully extracted resume text.")
         print(content[:200] + "...") # print first 200 chars for verification
