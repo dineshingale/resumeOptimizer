@@ -30,9 +30,3 @@ def wordReplacer(input_path, output_path, replacement_map):
 
     doc.save(output_path)
     return True
-
-if __name__ == "__main__":
-    # Test logic
-    sample_map = {"Managed": "Orchestrated", "coding": "software architecture"}
-    replace_keywords_in_docx("data/input_resume.docx", "data/output_resume.docx", sample_map)
-    print("Optimization complete. Check data/output_resume.docx")

@@ -26,9 +26,3 @@ def optimizedKeywords(prompt, api_key):
     except Exception as e:
         print(f"API Error: {e}")
         return None
-
-if __name__ == "__main__":
-    # Test stub (requires a real API key in your environment variables)
-    TEST_KEY = os.getenv("GEMINI_API_KEY")
-    TEST_PROMPT = "Return a JSON with key 'hello' and value 'world'"
-    print(get_optimized_keywords(TEST_PROMPT, TEST_KEY))

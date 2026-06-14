@@ -33,6 +33,8 @@ def main():
 
     print(f"4. Received {len(replacement_map)} optimizations from Gemini.")
     for old, new in replacement_map.items():
+        if new == "None":
+            continue
         print(f"   - Replacing '{old}' with '{new}'")
 
     # apply Replacements to Docx

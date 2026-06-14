@@ -24,11 +24,3 @@ def textExtractor(file_path):
     except Exception as e:
         print(f"Error: Could not read the file at {file_path}. {e}")
         return None
-
-if __name__ == "__main__":
-    # quick test logic
-    resume_path = "data/input_resume.docx"
-    content = textExtractor(resume_path)
-    if content:
-        print("Successfully extracted resume text.")
-        print(content[:200] + "...") # print first 200 chars for verification
